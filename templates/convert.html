@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+<div class="page-header mt-5">
+    <h1>Convert Temperature from Fahrenheit to Celsius</h1>
+</div>
+
+<div class="mt-5">
+    <h2>Formula: C = 5/9 * (F -32)</h2>
+</div>
+
+<div class="mt-5 col-md-4">
+{{ wtf.quick_form(form) }}
+</div>
+
+<div class="mt-5">
+{% if c %}
+<h3>Fahrenheit {{ f }} is {{ c }} celsius.</h3>
+{% endif %}
+</div>
+
+<div class="mt-5 col-md-6">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Fahrenheit</th>
+        <th scope="col">Celsius</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in table %}
+      <tr{% if row[0] % 10 == 0 %} class="table-info"{% endif %}>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
